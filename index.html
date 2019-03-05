@@ -13,12 +13,14 @@
       // console.log('document.documentElement', document.documentElement)
 
       //优化方案二
-      window.onresize = setHtmlFontSize
-      function setHtmlFontSize () {
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 6.4 + 'px';
-        console.log('document.documentElement.clientWidth', document.documentElement.clientWidth)
-      }
-      setHtmlFontSize()
+      // window.onresize = setHtmlFontSize
+      // function setHtmlFontSize () {
+      //   document.documentElement.style.fontSize = document.documentElement.clientWidth / 6.4 + 'px';
+      //   console.log('document.documentElement.clientWidth', document.documentElement.clientWidth)
+      //   console.log('document.documentElement.style.fontSize', document.documentElement.style.fontSize)
+      //   console.log('window.screen.width', window.screen.width)
+      // }
+      // setHtmlFontSize()
 
       //方案三（获取html标签的不同写法而已）
       // window.onresize = setHtmlFontSize
@@ -28,6 +30,18 @@
       //   htmlDom.style.fontSize = htmlWidth / 10 + 'px'
       // }
       // setHtmlFontSize()
+
+      //优化方案四（设置屏幕尺寸临界值）
+      //当deviceWidth大于640时，则物理分辨率大于1280,应该去访问pc网站了,此时不在兼容铺满整屏！
+      window.onresize = setHtmlFontSize
+      function setHtmlFontSize () {
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 640) deviceWidth = 640;
+        document.documentElement.style.fontSize = deviceWidth  / 6.4 + 'px';
+        console.log('document.documentElement.clientWidth', document.documentElement.clientWidth)
+        console.log('document.documentElement.style.fontSize', document.documentElement.style.fontSize)
+      }
+      setHtmlFontSize()
     </script>
   </head>
   <!-- <body style="margin: 0 ;padding: 0;font-size: 0.32rem"> -->
